@@ -74,6 +74,12 @@ private:
                         oil_id, charges, max_charge
                     );
                     PrismaUI->Invoke(view, std::format("OilUpdate({})", jsObject).c_str());
+                } else {
+                    std::string jsObject = std::format(
+                        "{{name: '{}', currentCharge: {}, maxCharge: {}}}",
+                        "no_oil", -1, -1
+                    );
+                    PrismaUI->Invoke(view, std::format("OilUpdate({})", jsObject).c_str());
                 }
             }
         }
@@ -114,31 +120,31 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message)
             logger::info("RFAD plugin created");
 
             RE::ExtraPoison* oil = u_get_pc_poison(false);
-                if (!oil) {
-                    oil = u_get_pc_poison(true);
+            if (!oil) {
+                oil = u_get_pc_poison(true);
+            }
+            if (oil) {
+                auto data = oil->poison;
+                if (!oil || data->effects.empty()) return;
+                auto oil_id = data->effects[0]->baseEffect->formID;
+
+                float max_charge = 140.f;
+
+                if (data->HasKeyword(oil_improvedKW.p)) {
+                    max_charge += 40.f;
                 }
-                if (oil) {
-                    auto data = oil->poison;
-                    if (!oil || data->effects.empty()) return;
-                    auto oil_id = data->effects[0]->baseEffect->formID;
-
-                    float max_charge = 140.f;
-
-                    if (data->HasKeyword(oil_improvedKW.p)) {
-                        max_charge += 40.f;
-                    }
-                    else if (data->HasKeyword(oil_pureKW.p)) {
-                        max_charge += 80.f;
-                    }
-                    if (u_is_equipped(RE::PlayerCharacter::GetSingleton(), chemistPotions.p)) max_charge += 50.f;
-
-                    float charges = static_cast<float>(oil->count);
-                    std::string jsObject = std::format(
-                        "{{name: '{}', currentCharge: {}, maxCharge: {}}}",
-                        oil_id, charges, max_charge
-                    );
-                    PrismaUI->Invoke(view, std::format("OilUpdate({})", jsObject).c_str());
+                else if (data->HasKeyword(oil_pureKW.p)) {
+                    max_charge += 80.f;
                 }
+                if (u_is_equipped(RE::PlayerCharacter::GetSingleton(), chemistPotions.p)) max_charge += 50.f;
+
+                float charges = static_cast<float>(oil->count);
+                std::string jsObject = std::format(
+                    "{{name: '{}', currentCharge: {}, maxCharge: {}}}",
+                    oil_id, charges, max_charge
+                );
+                PrismaUI->Invoke(view, std::format("OilUpdate({})", jsObject).c_str());
+            }
         });
         break;
 
