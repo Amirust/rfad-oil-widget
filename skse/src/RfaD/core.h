@@ -6,8 +6,8 @@
 
 using InputEvents = RE::InputEvent*;
 
-namespace my         
-{                
+namespace my
+{
     static RE::TESDataHandler* handler;
 
     static const char* magick_esp = "Requiem for a Dream - Magick.esp";
@@ -23,7 +23,7 @@ namespace my
 
     static GamePtr<RE::BGSKeyword> no_dispel (0xC287DC, "RfaD SSE - Awaken.esp");
     static GamePtr<RE::BGSKeyword> physDamageEffect (0xD2AEC3, "RfaD SSE - Awaken.esp");
-    static GamePtr<RE::SpellItem> meditationSpell (0xD25DB2, "RfaD SSE - Awaken.esp"); 
+    static GamePtr<RE::SpellItem> meditationSpell (0xD25DB2, "RfaD SSE - Awaken.esp");
     static GamePtr<RE::SpellItem> meditationFFself (0xD58858, "RfaD SSE - Awaken.esp");
 
     static GamePtr<RE::SpellItem> deleteSavesEnabled (0x97C5DD, "RfaD SSE - Awaken.esp");
@@ -33,9 +33,9 @@ namespace my
     static GamePtr<RE::TESGlobal> xp_mult (0x8C0CEA, "RfaD SSE - Awaken.esp");
     static GamePtr<RE::TESGlobal> xp_points (0x800, "Requiem for a Dream - Experience.esp");
 
-    static GamePtr<RE::BGSProjectile> elemTriumvirateProj (0x1503C2, "Requiem for a Dream - Kelpie.esp");   // 
-    static GamePtr<RE::BGSProjectile> fireWaveHorzProj  (0xC88C30, "RfaD SSE - Awaken.esp");                // 
-    static GamePtr<RE::BGSProjectile> frostWaveHorzProj (0xC8DD46, "RfaD SSE - Awaken.esp");                // 
+    static GamePtr<RE::BGSProjectile> elemTriumvirateProj (0x1503C2, "Requiem for a Dream - Kelpie.esp");   //
+    static GamePtr<RE::BGSProjectile> fireWaveHorzProj  (0xC88C30, "RfaD SSE - Awaken.esp");                //
+    static GamePtr<RE::BGSProjectile> frostWaveHorzProj (0xC8DD46, "RfaD SSE - Awaken.esp");                //
 
     static GamePtr<RE::EffectSetting> moveAliesToPlayer (0xC60394, "RfaD SSE - Awaken.esp");
     static GamePtr<RE::EffectSetting> quen_barrier (0x74EA96, "RfaD SSE - Awaken.esp");
@@ -83,7 +83,7 @@ namespace my
     static GamePtr <RE::TESGlobal> dodgeType (0x8AC88C, "RfaD SSE - Awaken.esp");
     static GamePtr <RE::TESGlobal> vamp_state_glob (0xB960D3, "RfaD SSE - Awaken.esp");
     static GamePtr <RE::TESGlobal> nb_hitCounter     (0xC9D865, "RfaD SSE - Awaken.esp");
-    
+
     static GamePtr <RE::SpellItem> redguardBuffDmg   (0x27F080, "RfaD SSE - Awaken.esp");
 
     static GamePtr<RE::SpellItem>     nb_blynk (0x2F31D5, "RfaD SSE - Awaken.esp");
@@ -251,22 +251,22 @@ namespace my
     //static GamePtr<RE::SpellItem> rbb_univ_spell (0x2FAD46, "Requiem - Breaking Bad.esp");
 
     //---------------------------------------------------------------------------------------- skyrim.esm -----
-    static GamePtr<RE::BGSEquipSlot> slotRightHand (0x13F42);   // 
+    static GamePtr<RE::BGSEquipSlot> slotRightHand (0x13F42);   //
     static GamePtr<RE::BGSEquipSlot> slotLeftHand  (0x13F43);   //
-    static GamePtr<RE::BGSEquipSlot> slotEitherHand(0x13F44);   //   
+    static GamePtr<RE::BGSEquipSlot> slotEitherHand(0x13F44);   //
     static GamePtr<RE::BGSEquipSlot> slotBothHands (0x13F45);   //  }  skyrim equip slots (EQUP)
-    static GamePtr<RE::BGSEquipSlot> slotVoice     (0x25BEE);   // 
-    static GamePtr<RE::BGSEquipSlot> slotShield    (0x141E8);   // 
+    static GamePtr<RE::BGSEquipSlot> slotVoice     (0x25BEE);   //
+    static GamePtr<RE::BGSEquipSlot> slotShield    (0x141E8);   //
     static GamePtr<RE::BGSEquipSlot> slotPotion    (0x35698);   //
 
-    static GamePtr<RE::TESObjectWEAP> vanillaUnarmed (0x1F4);    // 
+    static GamePtr<RE::TESObjectWEAP> vanillaUnarmed (0x1F4);    //
     static GamePtr<RE::BGSKeyword> MagicVampireDrain (0x101BDE); //
     static GamePtr<RE::BGSKeyword> actorDwarven(0x1397A);        //
     static GamePtr<RE::BGSKeyword> alch_heal_KW(0x42503);        //
     static GamePtr<RE::BGSKeyword> magicSlow (0xB729E);          //
     static GamePtr<RE::BGSKeyword> magicShout (0x46B99);     //
     static GamePtr<RE::BGSKeyword> bound1H (0x510BE);        //
-    static GamePtr<RE::BGSKeyword> bound2H (0x84D1D);        // 
+    static GamePtr<RE::BGSKeyword> bound2H (0x84D1D);        //
     static GamePtr<RE::BGSKeyword> boundBow(0x28A42);        //
     static GamePtr<RE::BGSKeyword> sword_1h(0x1E711);        //
     static GamePtr<RE::BGSKeyword> vendorItemHide (0x914EA);    //
@@ -296,7 +296,7 @@ namespace my
 
     //=============================================================================================================
 
-   
+
     static RE::EffectSetting* sf_descr;
     static RE::TESGlobal *glob_destr_1, *glob_destr_2, *glob_destr_3, *glob_alter_1, *glob_alter_2, *glob_alter_3;
     static RE::SpellItem *sf_speed_const, *sf_penet_const, *sf_armor_const, *sf_rflct_const, *sf_absrb_const, *sf_stamina_const;
@@ -313,11 +313,11 @@ namespace my
                         adrenaline_text, adrenalineMax_text, oil_decline_text;
 
     static std::string lastHiterName, lastTargetName;
-        
+
     static bool twicedUpdate;
     static bool snowElf_re_chanted;
     static bool meditateState;
-       
+
     void initGameData();
     void sf_handle_reserved_MP();
     void sf_handle(RE::ActiveEffect *eff, RE::EffectSetting *baseEff);
@@ -353,7 +353,7 @@ struct mys                        //  variables that can be used in all project 
     static bool  xdescr_on;
     static bool  hasHeavyArmor;
     static bool  attackKeyHolding;
-       
+
     static  RE::Actor  *player;
     static  RE::UI     *ui;
 
@@ -401,13 +401,16 @@ void on_pickup_object (RE::Character *actor, RE::TESObjectREFR* object, std::int
 void on_equip  (RE::Actor* actor, RE::TESBoundObject* object, RE::ObjectEquipParams* params);
 void on_unequip(RE::Actor* actor, RE::TESBoundObject* object, RE::ObjectEquipParams* params);
 
-void on_death (RE::Actor* victim, RE::Actor* killer);
+void on_dying (RE::Actor* victim);
+void on_kill (RE::Actor* victim, RE::Actor* killer);
 void on_activate (RE::TESObjectREFRPtr whoActivated, RE::TESObjectREFRPtr objectActivated);
 void on_location_change (RE::TESObjectREFRPtr refHandle, RE::BGSLocation* oldLoc, RE::BGSLocation* newLoc);    // events
-void on_wait_menu_open();
-void on_wait_menu_close();
-void on_inventory_open();
-void on_inventory_close();
+// void on_wait_menu_open();
+// void on_wait_menu_close();
+// void on_inventory_open();
+// void on_inventory_close();
+
+void on_ui_descr_button (float a_state);
 
 void log_game_info (RE::Actor* pl, bool load = false, bool death = false, RE::Actor* killer = nullptr, bool refresh = false);
 
@@ -422,7 +425,7 @@ void on_apply_poison (RE::InventoryEntryData* data, RE::AlchemyItem* poison, int
 void toggle_numbers_widget ();   // impl in ui.cpp
 void handle_numbers_widget ();   // impl in ui.cpp
 
-//bool on_arrow_collide(RE::Projectile* proj, RE::hkpCollidable* coll); 
+//bool on_arrow_collide(RE::Projectile* proj, RE::hkpCollidable* coll);
 
 void on_my_update();
 //void on_micro_update();

@@ -6,6 +6,7 @@
 #include <SKSE/SKSE.h>
 #include <SKSE/Logger.h>
 #include "RfaD/Hooks.h"
+#include "RfaD/Events.h"
 
 #include <fstream>
 

@@ -2435,4 +2435,5 @@ add_executable(PrismaUI_Example_Plugin
         src/main.cpp
         src/pch.h
         src/PrismaUI_API.h
+        src/RfaD/Events.h
 )

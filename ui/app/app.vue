@@ -1,8 +1,8 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div v-if="oilPercentage > 0 && !!currentOil" style="position: absolute; top: 80%; right: 10px;">
-      <div style="position: relative;">
-        <svg width="40" height="40" viewBox="0 0 40 40" class="circular-progress" id="progress" style="--progress: 100;">
+    <div v-if="oilPercentage > 0 && !!currentOil" style="position: absolute; top: 80%; right: 15px;">
+      <div style="position: relative;"  :style="{ opacity: hide ? 0 : 1 }">
+        <svg width="50" height="50" viewBox="0 0 50 50" class="circular-progress" id="progress" style="--progress: 100;">
           <circle class="center-bg"></circle>
           <circle class="bg"></circle>
           <circle class="fg" :style="{
@@ -10,27 +10,26 @@
           }"></circle>
         </svg>
         <template v-if="currentOil === Oil.Black">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_BLACK.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_BLACK.svg">
         </template>
         <template v-else-if="currentOil === Oil.Corrosion">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_COROSION.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_COROSION.svg">
         </template>
         <template v-else-if="currentOil === Oil.Fire">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_FIRE.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_FIRE.svg">
         </template>
         <template v-else-if="currentOil === Oil.Frost">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_FROST.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_FROST.svg">
         </template>
         <template v-else-if="currentOil === Oil.Garlic">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_GARLICK.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_GARLICK.svg">
         </template>
         <template v-else-if="currentOil === Oil.Poison">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_POISON.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_POISON.svg">
         </template>
         <template v-else-if="currentOil === Oil.Silver">
-          <img style="position: absolute; width: 26px; height: 26px; top: 7px; left: 7px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_SILVER.svg">
+          <img style="position: absolute; width: 31px; height: 31px; top: 10px; left: 10px; z-index: 20;" src="~~~/assets/ZD_ICON_TYPE_OIL_SILVER.svg">
         </template>
-<!--        <div style="color: white">{{ recData }}</div>-->
       </div>
     </div>
   </transition>
@@ -48,18 +47,18 @@
 }
 
 :root {
-  --oil-black: #97735f;
-  --oil-corosion: #bbbd83;
-  --oil-fire: #f97355;
-  --oil-frost: #657387;
-  --oil-garlic: #7f396d;
-  --oil-poison: #557b4d;
-  --oil-silver: #ffc185;
+  --oil-black: #CCCECC;
+  --oil-corosion: #CCCECC;
+  --oil-fire: #CCCECC;
+  --oil-frost: #CCCECC;
+  --oil-garlic: #CCCECC;
+  --oil-poison: #CCCECC;
+  --oil-silver: #CCCECC;
 }
 
 .circular-progress {
-  --size: 40px;
-  --half-size: calc(var(--size) / 2);
+  --size: 45px;
+  --half-size: calc(calc(var(--size) / 2) + 3px);
   --stroke-width: 2px;
   --radius: calc((var(--size) - var(--stroke-width)) / 2);
   --circumference: calc(var(--radius) * pi * 2);
@@ -80,7 +79,7 @@
 .circular-progress circle.center-bg {
   cx: var(--half-size);
   cy: var(--half-size);
-  r: calc(var(--radius));
+  r: calc(var(--radius) + 3px);
   fill: rgba(0,0,0,0.7);
 }
 .circular-progress circle.fg {
@@ -93,6 +92,18 @@
 </style>
 
 <script lang="ts" setup>
+const hide = ref(false);
+/*
+:root {
+  --oil-black: #97735f;
+  --oil-corosion: #bbbd83;
+  --oil-fire: #f97355;
+  --oil-frost: #657387;
+  --oil-garlic: #7f396d;
+  --oil-poison: #557b4d;
+  --oil-silver: #ffc185;
+}
+ */
 import registerObserver from "~~/composables/registerObserver";
 
 enum Oil {
@@ -133,8 +144,12 @@ const recData = ref<OilUpdateDTO | null>(null);
 //   }, 200)
 // })
 
+registerObserver('hide', (data: boolean) => {
+  hide.value = data;
+})
+
 registerObserver('OilUpdate', (data: OilUpdateDTO) => {
-  if (data?.name === 'no_oil') { recData.value = null; return; }
+  if (data?.name === 'no_oil') { recData.value = null; currentOil.value = null; oilPercentage.value = -1; return; }
 
   const id = Number(data.name) as Oil;
   currentOil.value = id;
@@ -170,6 +185,5 @@ registerObserver('OilUpdate', (data: OilUpdateDTO) => {
   const progressElement = document.getElementById('progress');
   if (progressElement)
     progressElement.style.setProperty('--progress', `${oilPercentage.value}`);
-
 })
 </script>
