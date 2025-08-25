@@ -17,14 +17,17 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message)
             ptr->init_ptr();
         }
 
-        if (PrismaUI && view) {
-            PrismaUI->Destroy(view);
-        }
+        OilSystem::Initialize();
+
+        if (PrismaUI && view) PrismaUI->Destroy(view);
         break;
 
     case SKSE::MessagingInterface::kPostLoadGame:
         PrismaUI = static_cast<PRISMA_UI_API::IVPrismaUI1*>(PRISMA_UI_API::RequestPluginAPI(PRISMA_UI_API::InterfaceVersion::V1));
         logger::info("PrismaUI API initialized");
+
+        if (PrismaUI && view) PrismaUI->Destroy(view);
+
         view = PrismaUI->CreateView("index.html", [](PrismaView viewInstance) -> void {
             logger::info("RFAD plugin created");
 

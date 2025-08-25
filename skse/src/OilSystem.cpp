@@ -6,6 +6,7 @@ float OilSystem::upd_timer = 0.2f;
 GamePtr<RE::BGSKeyword> OilSystem::oil_improvedKW(0x21912E, "RfaD SSE - Awaken.esp");
 GamePtr<RE::BGSKeyword> OilSystem::oil_pureKW(0x21E298, "RfaD SSE - Awaken.esp");
 GamePtr<RE::TESObjectARMO> OilSystem::chemistPotions(0xD8B314, "RfaD SSE - Awaken.esp");
+GamePtr<RE::BGSPerk> OilSystem::firstAlchemyPerk(0x0BE127);
 
 RE::ExtraPoison* OilSystem::GetPlayerPoison(bool is_left_hand)
 {
@@ -55,15 +56,17 @@ void OilSystem::UpdateOilWidget()
         auto oil_id = data->effects[0]->baseEffect->formID;
         float max_charge = 140.f;
 
-        if (data->HasKeyword(oil_improvedKW.p)) {
-            max_charge += 40.f;
-        }
-        else if (data->HasKeyword(oil_pureKW.p)) {
-            max_charge += 80.f;
-        }
+        if (RE::PlayerCharacter::GetSingleton()->HasPerk(firstAlchemyPerk.p)) {
+            if (data->HasKeyword(oil_improvedKW.p)) {
+                max_charge += 40.f;
+            }
+            else if (data->HasKeyword(oil_pureKW.p)) {
+                max_charge += 80.f;
+            }
 
-        if (IsEquipped(RE::PlayerCharacter::GetSingleton(), chemistPotions.p)) {
-            max_charge += 50.f;
+            if (IsEquipped(RE::PlayerCharacter::GetSingleton(), chemistPotions.p)) {
+                max_charge += 50.f;
+            }
         }
 
         float charges = static_cast<float>(oil->count);

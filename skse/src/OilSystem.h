@@ -3,7 +3,6 @@
 #include "Common.h"
 #include "RfaD/GamePtr.h"
 
-// Oil System - verantwortlich für Oil/Poison Funktionalität
 class OilSystem {
 public:
     static RE::ExtraPoison* GetPlayerPoison(bool is_left_hand);
@@ -16,4 +15,5 @@ private:
     static GamePtr<RE::BGSKeyword> oil_improvedKW;
     static GamePtr<RE::BGSKeyword> oil_pureKW;
     static GamePtr<RE::TESObjectARMO> chemistPotions;
+    static GamePtr<RE::BGSPerk> firstAlchemyPerk;
 };

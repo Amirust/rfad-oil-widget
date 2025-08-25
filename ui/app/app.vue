@@ -107,13 +107,13 @@ const hide = ref(false);
 import registerObserver from "~~/composables/registerObserver";
 
 enum Oil {
-  Black = 0x480E9071,
-  Corrosion = 0x4821913B,
-  Fire = 0x4812ae7d,
-  Frost = 0x4812FF97 ,
-  Garlic = 0x4816cc81,
-  Poison = 0x4816CC7E ,
-  Silver = 0x480CFAEC ,
+  Black = 0x0E9071,
+  Corrosion = 0x21913B,
+  Fire = 0x12ae7d,
+  Frost = 0x12FF97 ,
+  Garlic = 0x16cc81,
+  Poison = 0x16CC7E ,
+  Silver = 0x0CFAEC ,
 }
 
 interface OilUpdateDTO {
@@ -151,7 +151,7 @@ registerObserver('hide', (data: boolean) => {
 registerObserver('OilUpdate', (data: OilUpdateDTO) => {
   if (data?.name === 'no_oil') { recData.value = null; currentOil.value = null; oilPercentage.value = -1; return; }
 
-  const id = Number(data.name) as Oil;
+  const id = parseInt(`0x${Number(data.name).toString(16).slice(2)}`) as Oil;
   currentOil.value = id;
 
   switch (id) {
